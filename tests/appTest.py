@@ -16,3 +16,8 @@ class AppTest(unittest.TestCase):
         response = self.app.get('/hello?name=Joao')
         self.assertEqual(200, response.status_code, "Erro no test_http_code!")
         self.assertEqual("Hello, Joao!", response.get_data(as_text=True), "Erro no test_print_hello_success!")
+
+    def test_print_hello_error(self):
+        response = self.app.get('/hello?name=')
+        self.assertEqual(400, response.status_code, "Erro no test_http_code!")
+        self.assertEqual("Hello, !", response.get_data(as_text=True), "Erro no test_print_hello_error!")
